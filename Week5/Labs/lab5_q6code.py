@@ -5,23 +5,28 @@ Lab question 6 sample code
 
 @author: jlowh
 """
-#import pymongo
+
 import pymongo
+
+from pymongo import MongoClient
 
 # create your connection string
 connect_string = "mongodb+srv://suesusman:5VnllTXksmuqmKJe@cluster0.no2nrro.mongodb.net/?retryWrites=true&w=majority"
 
-#create a connection to your Atlas cluster
+client = MongoClient(
+    "mongodb://suesusman:5VnllTXksmuqmKJe@ac-gqkxhba-shard-00-00.no2nrro.mongodb.net:27017/?ssl=false")
+
+# create a connection to your Atlas cluster
 client = pymongo.MongoClient(connect_string)
 
-#connect to the sample_restaraunts database
+# connect to the sample_restaraunts database
 restaurants_db = client.sample_restaurants
 
-#establish a connection to the restarants collection
+# establish a connection to the restarants collection
 rest_coll = restaurants_db["restaurants"]
 
-#find a document with the restaraunt name Nordic Delicacies
+# find a document with the restaraunt name Nordic Delicacies
 nordic = rest_coll.find_one({"name": "Nordic Delicacies"})
 
-#find the type of the queried document
+# find the type of the queried document
 type(nordic)

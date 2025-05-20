@@ -5,7 +5,7 @@ Lab question 6 sample code
 
 @author: jlowh
 """
-#import pymongo
+# import pymongo
 import pymongo
 
 """
@@ -20,8 +20,8 @@ client = pymongo.MongoClient(connect_string)
 
 
 Exercise 2
-Using your client created from exercise 1, connect to a new database, homework6. 
-Once you have connected to the database set your collection to a new collection, students. 
+Using your client created from exercise 1, connect to a new database, homework6.
+Once you have connected to the database set your collection to a new collection, students.
 https://pymongo.readthedocs.io/en/stable/tutorial.html --> getting database and getting collection
 """
 db = client["homework"]
@@ -30,40 +30,40 @@ collection = db['students']
 
 
 Exercise 3
-I have created a list of student data containing documents that you will need to insert into MongoDB. 
-Using insert_many, insert the list of documents into the students collection. 
+I have created a list of student data containing documents that you will need to insert into MongoDB.
+Using insert_many, insert the list of documents into the students collection.
 """
 student_data = [
-    
-    {"instructor":"Martin",
-     "class":"Chemistry",
-     "max_students":25,
-     "term":"SP2",
-     "students":["Bob Mackey","George Straight","Bill Cowher","Stanley Kubrick",'Martin Sheen',"Charlize Theron"]},
-    {"instructor":"Lowhorn",
-     "class":"Big Data",
-     "max_students":10,
-     "term":"SU1",
-     "students":["Charles Barkely","Charlie Sheen","Tina Turner","Paul Walker",'Dwayne Johnson',"Courtney Cox", "Margot Robbie"]},
-    {"instructor":"Carlin",
-     "class":"Discrete Math",
-     "max_students":25,
-     "term":"SP2",
-     "students":["Tim Couch","George Straight","Michael Douglas","Peyton Manning",'Wade Boggs',"Doc Rivers","Drew Bledsoe","Ray Bourque"]},
-    {"instructor":"Lowhorn",
-     "class":"Programming for DS",
-     "max_students":25,
-     "term":"SP2",
-     "students":["Roger Clemens","Ray Allen","Marcus Smart","Kevin Garnett",'Mo Vaughn',"Uma Thurman","Conan O'Brien","Mark Wahlberg"]},
-    ]
+
+    {"instructor": "Martin",
+     "class": "Chemistry",
+     "max_students": 25,
+     "term": "SP2",
+     "students": ["Bob Mackey", "George Straight", "Bill Cowher", "Stanley Kubrick", 'Martin Sheen', "Charlize Theron"]},
+    {"instructor": "Lowhorn",
+     "class": "Big Data",
+     "max_students": 10,
+     "term": "SU1",
+     "students": ["Charles Barkely", "Charlie Sheen", "Tina Turner", "Paul Walker", 'Dwayne Johnson', "Courtney Cox", "Margot Robbie"]},
+    {"instructor": "Carlin",
+     "class": "Discrete Math",
+     "max_students": 25,
+     "term": "SP2",
+     "students": ["Tim Couch", "George Straight", "Michael Douglas", "Peyton Manning", 'Wade Boggs', "Doc Rivers", "Drew Bledsoe", "Ray Bourque"]},
+    {"instructor": "Lowhorn",
+     "class": "Programming for DS",
+     "max_students": 25,
+     "term": "SP2",
+     "students": ["Roger Clemens", "Ray Allen", "Marcus Smart", "Kevin Garnett", 'Mo Vaughn', "Uma Thurman", "Conan O'Brien", "Mark Wahlberg"]},
+]
 
 result = collection.insert_many(student_data)
 """
 
 
 Exercise 4
-What MongoDB type do Python lists get converted to? 
-Submit a screen shot of your collection in MongoDB with this python file. 
+What MongoDB type do Python lists get converted to?
+Submit a screen shot of your collection in MongoDB with this python file.
 """
 # array
 
@@ -71,15 +71,14 @@ Submit a screen shot of your collection in MongoDB with this python file.
 
 
 Exercise 5
-George Straight accidentally registered for two courses in the SP2 Session. 
+George Straight accidentally registered for two courses in the SP2 Session.
 Using a pymongo.update(), remove him from Carlin's class
-Note: Your key is instructor. 
-Use the $pull method to extract the element from the array. 
+Note: Your key is instructor.
+Use the $pull method to extract the element from the array.
 https://www.geeksforgeeks.org/python-mongodb-update_one/
 https://www.mongodb.com/docs/manual/reference/operator/update/pull/
 
 """
-import pymongo
 
 # Assuming you've already established a connection to your MongoDB
 client = pymongo.MongoClient(connect_string)
@@ -91,7 +90,7 @@ collection = db['students']
 query = {"term": "SP2", "instructor": "Carlin", "students": "George Straight"}
 
 # Update operation using $pull to remove George Strait from Carlin's class
-update_query = {"$pull":{"students": "George Straight"}}
+update_query = {"$pull": {"students": "George Straight"}}
 
 # Perform the update
 result = collection.update_one(query, update_query)
@@ -105,9 +104,9 @@ else:
 
 
 Exercise 6
-A new student has signed up for all three SP2 sessions, his name is Tom Brady. 
-Update the SP2 classes by inserting the student Tom Brady into the students object. 
-Note: Many not one. Push not pull. 
+A new student has signed up for all three SP2 sessions, his name is Tom Brady.
+Update the SP2 classes by inserting the student Tom Brady into the students object.
+Note: Many not one. Push not pull.
 """
 # Update query for all SP2 sessions
 query = {"term": "SP2"}
@@ -123,16 +122,16 @@ if result.modified_count > 0:
     print("Tom Brady inserted into the students object for all SP2 sessions")
 else:
     print("No changes made. No documents matched the criteria for SP2 sessions")
+
 Exercise 7
-The college has decided that Chemistry was not a good fit for the data science program. Delete it from the collection. 
-https://www.geeksforgeeks.org/python-mongodb-delete_one/
-"
+The college has decided that Chemistry was not a good fit for the data science program. Delete it from the collection.
+https: // www.geeksforgeeks.org/python-mongodb-delete_one/
 
 """
 
 
 Exercise 7
-The college has decided that Chemistry was not a good fit for the data science program. Delete it from the collection. 
+The college has decided that Chemistry was not a good fit for the data science program. Delete it from the collection.
 https://www.geeksforgeeks.org/python-mongodb-delete_one/
 """
 # Define the query to find the document for the "Chemistry" course
@@ -176,13 +175,13 @@ Instead of using the default hash _id, what would you recommend as a unique ID f
 # External Unique ID: If we have an external system that generates unique IDs, we can use those IDs as the unique identifier for our MongoDB documents. This can be useful when integrating MongoDB with other systems or when we want to maintain consistency across different databases.
 
 # References:
-    Learn more:
+Learn more:
 
-# What Is Objectid in Mongodb and How to Generate It Manually: https://www.knowledgehut.com/blog/web-development/objectid-in-mongodb
+    # What Is Objectid in Mongodb and How to Generate It Manually: https://www.knowledgehut.com/blog/web-development/objectid-in-mongodb
 
-# Generating Globally Unique Identifiers for Use with MongoDB | MongoDB Blog: https://www.mongodb.com/blog/post/generating-globally-unique-identifiers-for-use-with-mongodb
+    # Generating Globally Unique Identifiers for Use with MongoDB | MongoDB Blog: https://www.mongodb.com/blog/post/generating-globally-unique-identifiers-for-use-with-mongodb
 
-# javascript - How to generate unique id for each entry in mongoDB? - Stack Overflow: https://stackoverflow.com/questions/70928407/how-to-generate-unique-id-for-each-entry-in-mongodb
+    # javascript - How to generate unique id for each entry in mongoDB? - Stack Overflow: https://stackoverflow.com/questions/70928407/how-to-generate-unique-id-for-each-entry-in-mongodb
 """
 
 
@@ -194,4 +193,3 @@ db["students"].drop()
 
 # Close the MongoDB client connection
 client.close()
-"""
